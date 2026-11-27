@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>营销渠道管理 · 知识点分布图解（活页本）</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1f2328; --sub:#5b6570; --line:#d7dce1; --paper:#fffef9;
+  --c1:#c0392b; --c2:#d97706; --c3:#ca8a04; --c4:#2e8b57;
+  --c5:#0d9488; --c6:#2563eb; --c7:#6d28d9; --c8:#be185d;
+  --hole:#eef1f4;
+}
+html{background:#6b7280}
+body{font-family:"Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;color:var(--ink);line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.book{display:flex;flex-direction:column;align-items:center;gap:22px;padding:28px 10px}
+.sheet{position:relative;width:210mm;min-height:297mm;background:var(--paper);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);border-radius:4px 10px 10px 4px;display:flex;overflow:hidden}
+.margin{flex:0 0 20mm;background:linear-gradient(90deg,#f4f6f8,#fbfcfd);
+  border-right:1.5px solid #f3b4ae;display:flex;flex-direction:column;align-items:center;
+  justify-content:space-around;padding:16mm 0}
+.hole{width:8mm;height:8mm;border-radius:50%;background:var(--hole);
+  box-shadow:inset 1px 1px 3px rgba(0,0,0,.28),0 1px 0 #fff}
+.content{flex:1;padding:12mm 12mm 12mm 9mm;display:flex;flex-direction:column}
+.tag{position:absolute;top:0;right:0;padding:4px 14px;border-radius:0 4px 0 12px;
+  color:#fff;font-size:11px;font-weight:700;letter-spacing:.5px}
+h1.title{font-size:30px;font-weight:900;letter-spacing:1px;margin-bottom:2px}
+.subtitle{color:var(--sub);font-size:13px;margin-bottom:14px}
+h2.ph{font-size:21px;font-weight:800;padding:6px 0 6px 12px;border-left:7px solid var(--ink);margin:4px 0 14px}
+h3.sec{font-size:15px;font-weight:800;margin:14px 0 8px;display:flex;align-items:center;gap:8px}
+h3.sec::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--ink);transform:rotate(45deg)}
+.note{font-size:12.5px;color:var(--sub);margin:6px 0}
+.foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);
+  font-size:10.5px;color:#9aa3ac;display:flex;justify-content:space-between}
+/* mind-map tree */
+.tree{font-size:12.5px}
+.tree .root{display:inline-block;background:var(--ink);color:#fff;font-weight:800;
+  padding:6px 14px;border-radius:8px;font-size:14px;margin-bottom:10px}
+.branch{border-left:2.5px solid var(--line);margin-left:14px;padding-left:16px;position:relative}
+.node{position:relative;margin:7px 0;padding:6px 10px;background:#fff;border:1.5px solid var(--line);
+  border-radius:7px;display:inline-block;max-width:100%}
+.node::before{content:"";position:absolute;left:-16px;top:50%;width:14px;height:2px;background:var(--line)}
+.node b{color:var(--ink)}
+.node .d{color:var(--sub);font-size:11.5px}
+.lv2{border-left:2px solid #e7ebef;margin-left:10px;padding-left:14px}
+.lv2 .node{font-size:11.8px;padding:4px 9px}
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.chip{font-size:11.5px;padding:3px 10px;border-radius:14px;background:#f0f3f6;border:1px solid var(--line);white-space:nowrap}
+.chip.k{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+/* cards grid */
+.grid{display:grid;gap:9px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:1fr 1fr 1fr}
+.card{border:1.5px solid var(--line);border-radius:9px;padding:9px 11px;background:#fff}
+.card .h{font-weight:800;font-size:13px;margin-bottom:4px}
+.card .b{font-size:11.8px;color:#39414a}
+.card ul{margin:4px 0 0 16px}
+.card li{font-size:11.6px;margin:2px 0}
+/* callout */
+.co{border-radius:8px;padding:9px 12px;font-size:12px;margin:8px 0;border-left:5px solid}
+.co.warn{background:#fff7ed;border-color:var(--c2)}
+.co.tip{background:#ecfdf5;border-color:var(--c4)}
+.co.key{background:#eff6ff;border-color:var(--c6)}
+.co b{font-weight:800}
+/* table */
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin:6px 0}
+th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:#f0f3f6;font-weight:700}
+/* badges for exam weight */
+.badge{display:inline-block;font-size:10px;font-weight:700;color:#fff;padding:1px 7px;border-radius:10px;margin-left:6px}
+.hot{background:var(--c1)} .mid{background:var(--c2)} .base{background:var(--c4)}
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:4px;font-size:11.5px;margin:6px 0}
+.flow .s{background:#fff;border:1.5px solid var(--ink);border-radius:6px;padding:4px 8px;font-weight:600}
+.flow .a{color:var(--sub);font-weight:800}
+@media print{
+  html{background:#fff} .book{padding:0;gap:0}
+  .sheet{box-shadow:none;border-radius:0;page-break-after:always;width:210mm;min-height:296mm}
+}
+</style>
+</head>
+<body>
+<div class="book">
+<!-- ========== PAGE 1 封面 + 考试全景 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--ink)">封面 · 01</div>
+    <h1 class="title">营销渠道管理 · 知识点分布图解</h1>
+    <div class="subtitle">活页本复习版 · 依据考试范围原文（录音）+ 转写版 + 教材第4版 · 第12周周五下午开考</div>
+
+    <div class="co key"><b>怎么用这本图解：</b>每页一个主题，把考点画成分布图和卡片，对着背；文字详解去配套的
+    《渠道营销考点精讲与满分复习手册》。标 <span class="badge hot">高频</span> 的是老师点名或高分题，优先背。</div>
+
+    <h3 class="sec">一、考试题型分布地图</h3>
+    <div class="tree">
+      <span class="root">本次考试（严格按教材8章出题，PPT为补充）</span>
+      <div class="branch">
+        <div class="node"><b>送分题（底线，必须拿满）</b><span class="badge base">基础</span></div>
+        <div class="lv2">
+          <div class="node">判断题 · 8章都有 · 靠通读+陷阱清单</div>
+          <div class="node">选择题 · 是否增加未定 · 按判断题准备</div>
+          <div class="node">名词解释 · 给了范围 · 一字不差背教材原句</div>
+          <div class="node">简答题 · 给了范围 · 要点+每点一句解释</div>
+        </div>
+        <div class="node"><b>高分题（拉开差距）</b><span class="badge hot">高频</span></div>
+        <div class="lv2">
+          <div class="node"><b>模拟分析题</b> 10~12分 · 两种消费品判类别+设计长宽+<b>画图</b></div>
+          <div class="node"><b>案例分析（激励）</b> · 给企业激励政策+返利，评价好坏</div>
+          <div class="node"><b>案例分析（冲突调整）</b> · 现状→冲突→结构优化</div>
+          <div class="node">计算题 · 未定 · 去年多人"公式/分子分母记错"全错</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="co warn"><b>两个必须知道的坑：</b>① 录音原文前面的"发言总结/会议纪要/访谈对话"是录音软件的 AI 总结，
+    里面"新媒体特征=互动性/即时性/精准性""调整方式=精简/扩展/重组"都<b>不是教材答案</b>，别背。
+    ② "什么是反例"大概率是"什么是返利"的转写错字；"什么是法律"指激励的合法边界（直销≠传销、价格与合同）。</div>
+
+    <div class="foot"><span>营销渠道管理 知识点分布图解</span><span>第 1 页 / 共 10 页</span></div>
+  </div>
+</section>
+<!-- ========== PAGE 2 老师点名考点总清单 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--c1)">点名 · 02</div>
+    <h2 class="ph" style="border-color:var(--c1)">老师逐字点名的考点 · 分布总览</h2>
+    <div class="note">把录音原文里老师一条条念到的全部考点集中到一页，按题型归位。每条后面标了去教材哪一章背。</div>
+
+    <h3 class="sec">名词解释（点名）</h3>
+    <div class="chips">
+      <span class="chip k">全渠道</span><span class="chip">连锁经营</span>
+      <span class="chip">水平渠道系统</span><span class="chip">垂直渠道系统</span>
+      <span class="chip">水平渠道冲突</span><span class="chip k">渠道权力（录音写"权利"）</span>
+      <span class="chip k">返利（录音写"反例"）</span>
+    </div>
+
+    <h3 class="sec">简答（点名，要点+解释）</h3>
+    <div class="grid g2">
+      <div class="card"><div class="h">新媒体渠道有哪些特征？</div><div class="b">第2章 2.4.6 · 三条：高效交互 / 范围广裂变 / 精准化转化</div></div>
+      <div class="card"><div class="h">数字时代渠道创新主要趋势？</div><div class="b">综合1.4.2+2.4.6+8.6+专题八 · 电子化/移动化/社交化/新零售/全渠道</div></div>
+      <div class="card"><div class="h">网络分销渠道的类型？</div><div class="b">第8章 8.6 · B2B / B2C（两方式）+ O2O + 移动互联网</div></div>
+      <div class="card"><div class="h">分销渠道结构设计一般过程？</div><div class="b">第3章 3.4.1 · 建目标→定长宽→分任务→选成员</div></div>
+      <div class="card"><div class="h">渠道成员选择的主要标准？</div><div class="b">第4章 4.2 · 能力 / 可控性 / 适应性</div></div>
+      <div class="card"><div class="h">增强渠道控制力的策略？</div><div class="b">第6章 6.3.1 · 硬/软控制 + 六条</div></div>
+      <div class="card"><div class="h">提升渠道控制力的途径？</div><div class="b">第6章 6.3.2 · 制造商/经销商/零售商三主体</div></div>
+      <div class="card"><div class="h">企业对分销渠道的调整方式？</div><div class="b">第8章 8.5 · 四种改进策略（含方向四条）</div></div>
+    </div>
+
+    <h3 class="sec">画图（点名/转写）</h3>
+    <div class="chips">
+      <span class="chip k">便利品渠道设计</span><span class="chip k">选购品渠道设计</span>
+      <span class="chip k">特殊品渠道设计</span><span class="chip">选择渠道画图</span>
+      <span class="chip">P132 第五章后方画图（推测=可口可乐图5-5）</span>
+    </div>
+
+    <h3 class="sec">案例分析（点名）</h3>
+    <div class="grid g2">
+      <div class="card"><div class="h">激励案例</div><div class="b">给企业渠道激励政策+返利，分析做得怎么样 · 第5章</div></div>
+      <div class="card"><div class="h">冲突与调整案例</div><div class="b">现状→变化/问题→冲突理论→结构优化调整 · 第7章+8.5</div></div>
+    </div>
+
+    <div class="co tip"><b>记忆顺序建议：</b>先把这一页的名词和简答全背下来（送分），再练画图（第3页）和两类案例（第8~9页），
+    最后扫判断陷阱。老师原话：送分题都答不出，别指望高分题拿满分。</div>
+
+    <div class="foot"><span>老师点名考点 · 分布总览</span><span>第 2 页 / 共 10 页</span></div>
+  </div>
+</section>
+<!-- ========== PAGE 3 模拟分析题：产品分类+渠道设计 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--c1)">模拟题 · 03</div>
+    <h2 class="ph" style="border-color:var(--c1)">模拟分析题图解 · 产品三分类 → 长宽设计 <span class="badge hot">10~12分</span></h2>
+
+    <h3 class="sec">第一步：判断产品类别（看消费者会不会货比三家）</h3>
+    <div class="grid g3">
+      <div class="card" style="border-color:var(--c4)"><div class="h" style="color:var(--c4)">便利品</div>
+        <div class="b">不比就买 · 单价低 · 频繁买 · 忠诚低</div>
+        <ul><li>农夫山泉 康师傅</li><li>→ 长而宽 · 密集分销</li></ul></div>
+      <div class="card" style="border-color:var(--c2)"><div class="h" style="color:var(--c2)">选购品</div>
+        <div class="b">认真比较 · 中等价 · 看款式能效</div>
+        <ul><li>美的空调 优衣库</li><li>→ 中等长度 · 选择分销</li></ul></div>
+      <div class="card" style="border-color:var(--c1)"><div class="h" style="color:var(--c1)">特殊品</div>
+        <div class="b">认准品牌 · 高价 · 愿专程买</div>
+        <ul><li>劳力士 茅台</li><li>→ 短而窄 · 独家/直营</li></ul></div>
+    </div>
+    <div class="note">非渴求品（保险、墓地）已被老师排除，只考前三类。判类别要写≥3条理由：价格、频率、比较程度。</div>
+
+    <h3 class="sec">第二步：长度与宽度的因果链</h3>
+    <div class="grid g2">
+      <div class="card"><div class="h">渠道长度 = 中间商层级数</div>
+        <div class="b">单位价值<b>低</b>/毛利低/顾客分散 → <b>长</b>（借经销批发之力）<br>
+        单位价值<b>高</b>/易腐/控制愿望高 → <b>短</b>（直营可控）<br>数层级只数中间商，厂→零售→顾客=一阶</div></div>
+      <div class="card"><div class="h">渠道宽度 = 同层中间商数目</div>
+        <div class="b">三因素：投资水平 / 购买行为 / 市场商家数<br>
+        <b>密集</b>=宽（日用品）· <b>选择</b>=中（选购/特殊品）· <b>独家</b>=窄（高价技术品）</div></div>
+    </div>
+
+    <h3 class="sec">第三步：7步答题模板</h3>
+    <div class="flow">
+      <span class="s">①判类别+3理由</span><span class="a">→</span>
+      <span class="s">②产品/顾客特点</span><span class="a">→</span>
+      <span class="s">③长度几阶</span><span class="a">→</span>
+      <span class="s">④宽度分销策略</span><span class="a">→</span>
+      <span class="s">⑤成员与终端</span><span class="a">→</span>
+      <span class="s">⑥画图标长宽</span><span class="a">→</span>
+      <span class="s">⑦控制与风险</span>
+    </div>
+
+    <h3 class="sec">示范图：便利品（长而宽） vs 特殊品（短而窄）</h3>
+    <div class="grid g2">
+      <div class="card" style="border-color:var(--c4)"><div class="h" style="color:var(--c4)">农夫山泉</div>
+<pre style="font-size:10px;line-height:1.35;margin:0;white-space:pre-wrap">        农夫山泉公司
+   ┌──────┬──────┬──────┐
+ KA直供  区域经销商  电商  特殊通道
+         ┌──┴──┐
+       二批   直供终端
+         │  (便利店/餐饮)
+      零售小店
+   └──────┴──────┴──────┘
+            消费者
+长度:0~3阶并存  宽度:密集(宽)</pre></div>
+      <div class="card" style="border-color:var(--c1)"><div class="h" style="color:var(--c1)">劳力士</div>
+<pre style="font-size:10px;line-height:1.35;margin:0;white-space:pre-wrap">       劳力士(中国)
+   ┌───────┴────────┐
+ 品牌直营精品店   授权特约零售商
+ (旗舰店 零阶)   (每城1~2家 一阶)
+   └───────┬────────┘
+         消费者
+长度:零阶+一阶(短)
+宽度:独家/严格选择(窄)</pre></div>
+    </div>
+    <div class="co warn"><b>画图必标：</b>每张图写明"长度：×阶""宽度：密集/选择/独家"，终端要具体（别只写"零售商"），
+    最后一句对比总结"××长而宽，××短而窄"。</div>
+
+    <div class="foot"><span>模拟分析题图解</span><span>第 3 页 / 共 10 页</span></div>
+  </div>
+</section>
+<!-- ========== PAGE 4 第1~2章 分布图 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--c6)">1&2章 · 04</div>
+    <h2 class="ph" style="border-color:var(--c6)">第1章 渠道认知 + 第2章 战略模式</h2>
+
+    <h3 class="sec">第1章 知识树</h3>
+    <div class="tree">
+      <span class="root" style="background:var(--c6)">营销渠道认知</span>
+      <div class="branch">
+        <div class="node"><b>定义(AMA)</b><span class="d"> 参与商品所有权转移或买卖交易的中间商组成的统一体</span></div>
+        <div class="node"><b>九大流程</b><span class="d"> 正向:实体/所有权/促销 | 反向:订货/支付 | 双向:洽谈/融资/风险/信息</span></div>
+        <div class="node"><b>八大功能</b><span class="d"> 销售·沟通·洽谈·服务·信息·物流·承担风险·融资</span></div>
+        <div class="node"><b>四特点</b><span class="d"> 本地化·排他性·独特性·不可复制性</span></div>
+        <div class="node"><b>六大新变化(1.4.2)</b><span class="badge mid">常考</span></div>
+        <div class="lv2">
+          <div class="node">金字塔→扁平化</div>
+          <div class="node">以总经销商为中心→以终端为中心</div>
+          <div class="node">交易关系→伙伴关系</div>
+          <div class="node">大城市→小城市农村(重心下移)</div>
+          <div class="node">给钱→教赚钱方法</div>
+          <div class="node">电子化虚拟化+社交媒介融合，新零售兴起</div>
+        </div>
+        <div class="node"><b>专题一</b><span class="d"> 深度分销(横向密集+纵向下移) · 渠道扁平化</span></div>
+      </div>
+    </div>
+
+    <h3 class="sec">第2章 渠道模式分布</h3>
+    <div class="grid g2">
+      <div class="card"><div class="h">三种分销战略（宽度）</div>
+        <div class="b"><b>密集</b>=宽(日用品，覆盖快但难控易价格战)<br>
+        <b>独家</b>=窄(高价技术品，有序但有大户问题)<br>
+        <b>选择</b>=中(选购/特殊品，组合型)</div></div>
+      <div class="card"><div class="h">传统 vs 新兴渠道</div>
+        <div class="b">传统：经销商/代理商/分公司<br>
+        经销商=有所有权赚差价自主定价<br>代理商=无所有权赚佣金执行厂价<br>直销=非中间化(优4劣3)</div></div>
+      <div class="card"><div class="h">连锁经营 <span class="badge hot">点名名词</span></div>
+        <div class="b">四统一：理念·识别系统CIS·商品服务·经营管理<br>三类：正规RC / 自愿VC / 特许FC</div></div>
+      <div class="card"><div class="h">复合渠道 + 无店铺</div>
+        <div class="b">复合=多渠道系统(覆盖广但易冲突)<br>无店铺：直邮/目录/电话/电视/自动售货/新媒体</div></div>
+    </div>
+
+    <div class="co key"><b>新媒体渠道特征（点名·教材原句三条）：</b>
+    ① 传播高效，交互性强；② 受众范围广，易产生裂变效应；③ 用户群体精准化，提升用户转化率。
+    发展趋势四化：企业媒体化·媒体渠道化·渠道媒体化·渠道平台化。</div>
+    <div class="co warn"><b>专题二：</b>直销 vs 传销六区别（角色/渠道长度/管理/激励/晋升/推广导向）；2005年《直销管理条例》《禁止传销条例》；传销靠拉人头=金字塔=老鼠会，法律禁止。</div>
+
+    <div class="foot"><span>第1~2章 分布图</span><span>第 4 页 / 共 10 页</span></div>
+  </div>
+</section>
+<!-- ========== PAGE 5 第3~4章 分布图 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--c3)">3&4章 · 05</div>
+    <h2 class="ph" style="border-color:var(--c3)">第3章 结构设计 + 第4章 成员选择</h2>
+
+    <h3 class="sec">第3章 设计过程（点名·4步流程）</h3>
+    <div class="flow">
+      <span class="s">①建立渠道目标<br><small>批量/等候/空间/品种/服务</small></span><span class="a">→</span>
+      <span class="s">②确定长度和宽度<br><small>宽度三因素</small></span><span class="a">→</span>
+      <span class="s">③分配渠道任务<br><small>推销/支持/物流/售后/风险</small></span><span class="a">→</span>
+      <span class="s">④选择渠道成员<br><small>图3-1六环节</small></span>
+    </div>
+    <div class="grid g2">
+      <div class="card"><div class="h">八项设计原则</div><div class="b">顾客导向·最大效率·发挥优势·利益均沾·分工合作·覆盖适度·稳定可控·协调平衡</div></div>
+      <div class="card"><div class="h">九项设计目标</div><div class="b">货畅其流·渠道充满·渠道平衡·开拓新市场·提高市占率·扩大知名度·便于购买·提高效益·实现控制</div></div>
+    </div>
+    <div class="chips">
+      <span class="chip">长渠道=辐射广但难控层层加价窜货</span>
+      <span class="chip">短渠道=针对可控费用低但覆盖有限</span>
+      <span class="chip">大众渠道 vs 特殊通道</span><span class="chip">灰色营销(腐败)</span>
+      <span class="chip">逆向重构(专题三)</span>
+    </div>
+
+    <h3 class="sec">第4章 成员选择三标准（点名·同心圆）</h3>
+    <div class="tree">
+      <span class="root" style="background:var(--c3)">渠道成员选择标准</span>
+      <div class="branch">
+        <div class="node"><b>能力(外圈,9项)</b><span class="d"> 营销思路·合作意愿·态度价值观·信誉·销售实力·信用财务·管理能力·管理权稳定·产品线</span></div>
+        <div class="node"><b>可控性(中圈)</b><span class="d"> 控制内容·程度·方式；防"大户问题"</span></div>
+        <div class="node"><b>适应性(核心)</b><span class="d"> 对渠道的适应+对环境的应变</span></div>
+      </div>
+    </div>
+
+    <h3 class="sec">定量方法（计算题来源）</h3>
+    <div class="grid g3">
+      <div class="card"><div class="h">强制评分法</div><div class="b">Σ(打分×权数)，看<b>加权总分</b>非原始总分</div></div>
+      <div class="card"><div class="h">销售量分析法</div><div class="b">Y=a+bt，t从1起；n期总量=na+b·n(n+1)/2</div></div>
+      <div class="card"><div class="h">特征分析模型</div><div class="b">加权分÷(权数×10)×100%，分CA1~CA6</div></div>
+    </div>
+    <div class="co warn"><b>资信：</b>5C=品质(首要)·能力·资本·抵押·经济环境；信用期限 快消≤60天、耐用≤半年；
+    专题四五误区：网络大/规模大/资历深/给利益多/选好就完事，全是"不是"。</div>
+
+    <div class="foot"><span>第3~4章 分布图</span><span>第 5 页 / 共 10 页</span></div>
+  </div>
+</section>
+<!-- ========== PAGE 6 第5章 激励 + 返利 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--c5)">5章 · 06</div>
+    <h2 class="ph" style="border-color:var(--c5)">第5章 渠道激励 + 返利 <span class="badge hot">案例高频</span></h2>
+
+    <h3 class="sec">激励知识树</h3>
+    <div class="tree">
+      <span class="root" style="background:var(--c5)">渠道激励（本质=利益重新分配）</span>
+      <div class="branch">
+        <div class="node"><b>理论</b><span class="d"> 马斯洛·弗鲁姆期望(期望×手段×效价)·亚当斯公平·胡萝卜加大棒·丘吉尔</span></div>
+        <div class="node"><b>物质激励(基础)</b><span class="d"> 返利·价格折扣·放宽信用·赠送·额外补贴</span></div>
+        <div class="node"><b>精神激励(更有效)</b><span class="d"> 参与决策·授权·合作开发·培训·活动·市场服务支持</span></div>
+        <div class="node"><b>六原则</b><span class="d"> 有的放矢·及时·兼顾公平·目标一致·多样性·奖惩结合</span></div>
+        <div class="node"><b>三大法宝(专题五)</b><span class="d"> 目标激励·渠道奖励·工作设计</span></div>
+      </div>
+    </div>
+
+    <h3 class="sec">返利全图（点名·必背）</h3>
+    <div class="co key"><b>定义：</b>厂家或商家以一定时期的销量(回款)为依据，按一定标准，以现金或实物给予下游分销机构的利润返还或补贴。特点=<b>滞后兑现</b>。</div>
+    <div class="grid g2">
+      <div class="card"><div class="h">两大功能</div><div class="b"><b>激励</b>(刺激完成目标) + <b>控制</b>(达不到要求/违规则扣减)，相辅相成</div></div>
+      <div class="card"><div class="h">风险</div><div class="b">引起<b>窜货</b>；销量越大返利越高→不择手段突击销量→价格崩盘。根源=重激励轻控制</div></div>
+      <div class="card"><div class="h">按时间</div><div class="b">月度/季度/<b>年度(多数采用)</b>/及时</div></div>
+      <div class="card"><div class="h">按签约</div><div class="b"><b>明返</b>(易乱价) / <b>暗返</b>(像年终分红)；暗返只能与明返<b>交叉</b>用</div></div>
+      <div class="card"><div class="h">按目的</div><div class="b"><b>销量返利</b>(梯级，基础) + <b>过程返利</b>(铺市陈列/渠道维护/价格信誉/合理库存/竞争协作奖)</div></div>
+      <div class="card"><div class="h">力度</div><div class="b">家电1~2%；食品约3%，<b>不超5%</b>。参照：行业平均+不引起冲货</div></div>
+    </div>
+
+    <h3 class="sec">梯级返利计算（就上限全额，不分段）</h3>
+    <table>
+      <tr><th>年回款</th><th>档位</th><th>正确返利</th><th>错误(分段累进)</th></tr>
+      <tr><td>800万</td><td>2%</td><td><b>16万</b></td><td>11万 ✘</td></tr>
+      <tr><td>1200万</td><td>3%</td><td><b>36万</b></td><td>✘</td></tr>
+      <tr><td>2001万</td><td>5%</td><td><b>100.05万</b></td><td>—</td></tr>
+    </table>
+    <div class="co tip"><b>可口可乐分层激励(图5-5)：</b>公司→KA客户/批发商(→零售商)/直营渠道→消费者；考核三指标=销量·生动化·账款。
+    这正是"P132 第五章后方画图"最可能指的那张图。</div>
+
+    <div class="foot"><span>第5章 激励+返利</span><span>第 6 页 / 共 10 页</span></div>
+  </div>
+</section>
+<!-- ========== PAGE 7 第6章 权力与控制 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--c6)">6章 · 07</div>
+    <h2 class="ph" style="border-color:var(--c6)">第6章 渠道权力与控制</h2>
+
+    <h3 class="sec">权力知识树（"权利"是录音错字）</h3>
+    <div class="tree">
+      <span class="root" style="background:var(--c6)">渠道权力=对同渠道另一成员的控制力和影响力</span>
+      <div class="branch">
+        <div class="node"><b>权力依赖说</b><span class="d"> 爱默生：谁依赖谁，谁就受制于谁</span></div>
+        <div class="node"><b>权力基础说(六种)</b><span class="d"> 奖励·强迫·法定·认同·专家·信息 → 分强制性/非强制性</span></div>
+        <div class="node"><b>罗宾斯五种力量</b><span class="d"> 强制·合法·关系·专家·感召</span></div>
+        <div class="node"><b>获取权力六途径</b><span class="d"> 经济力·专家力·奖赏力·产权力·品牌力·关系力</span></div>
+      </div>
+    </div>
+
+    <h3 class="sec">增强控制力的策略（6.3.1 点名·六条）</h3>
+    <div class="grid g3">
+      <div class="card"><div class="h">①优质畅销产品</div><div class="b">控制渠道的根本武器(专家权)</div></div>
+      <div class="card"><div class="h">②良好服务</div><div class="b">增强感召力</div></div>
+      <div class="card"><div class="h">③规模经济</div><div class="b">谁规模大谁定规则</div></div>
+      <div class="card"><div class="h">④助销制度</div><div class="b">帮助→影响→控制</div></div>
+      <div class="card"><div class="h">⑤掌握下游中间商</div><div class="b">形成可替代竞争态势</div></div>
+      <div class="card"><div class="h">⑥激励资源杠杆</div><div class="b">独家权/价格/费用</div></div>
+    </div>
+    <div class="note">开头先写：控制分 <b>硬控制</b>(强制性权力) 和 <b>软控制</b>(非强制性权力，如产品品牌、网络、激励、助销)。</div>
+
+    <h3 class="sec">提升控制力的途径（6.3.2 点名·分三主体）</h3>
+    <div class="grid g3">
+      <div class="card" style="border-color:var(--c6)"><div class="h">制造商(12条)</div>
+        <div class="b">产品+服务+培训+助销+规模+直营+特许+个性化+一体化+直控终端+多产品线牵制+激励杠杆</div></div>
+      <div class="card" style="border-color:var(--c5)"><div class="h">经销商(10条)</div>
+        <div class="b">大批量进货+品种齐全+自有品牌+忠诚顾客+一体化+仓储配送+快周转+网络强+资金信誉+人脉</div></div>
+      <div class="card" style="border-color:var(--c3)"><div class="h">零售商(9条)</div>
+        <div class="b">集中采购+高市占议价+销售物流技术+大卖场+忠诚顾客+客户管理技术+收进场费+自创品牌+行业协会</div></div>
+    </div>
+    <div class="co tip">记忆：制造商靠"产品+服务+网络+激励"，经销商靠"规模+品种+配送+关系"，零售商靠"采购量+顾客+货架+自有品牌"。</div>
+
+    <h3 class="sec">6.4 应收账款 + 专题六助销</h3>
+    <div class="grid g2">
+      <div class="card"><div class="h">应收账款</div><div class="b">销售后应收未收的账款，超6个月视呆账坏账。防范：信用额度总额控制(=预期销售额×信用比例)、双重审批、敢于断货</div></div>
+      <div class="card"><div class="h">助销模式(宝洁)</div><div class="b">"经销商即办事处"；是服务型，<b>更是控制型</b>；避免包办和依赖</div></div>
+    </div>
+
+    <div class="foot"><span>第6章 权力与控制</span><span>第 7 页 / 共 10 页</span></div>
+  </div>
+</section>
+<!-- ========== PAGE 8 第7章 冲突 + 窜货 + 案例框架 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--c7)">7章 · 08</div>
+    <h2 class="ph" style="border-color:var(--c7)">第7章 渠道冲突与解决 <span class="badge hot">案例高频</span></h2>
+
+    <h3 class="sec">冲突知识树</h3>
+    <div class="tree">
+      <span class="root" style="background:var(--c7)">渠道冲突=成员因利益关系产生的矛盾和不协调</span>
+      <div class="branch">
+        <div class="node"><b>按形式(图7-1)</b><span class="d"> 水平(同层,典型窜货)·垂直(上下游,典型应收账款)·不同渠道间·同质</span></div>
+        <div class="node"><b>按性质</b><span class="d"> 良性(鲇鱼效应)·恶性</span></div>
+        <div class="node"><b>实质</b><span class="d"> 利益冲突(根本)·观念冲突·目标冲突</span></div>
+        <div class="node"><b>七大根源</b><span class="badge mid">案例必用</span></div>
+        <div class="lv2">
+          <div class="node">角色界定不清(捞过界)</div>
+          <div class="node">观念存在差异</div>
+          <div class="node">目标不一致(厂家要份额,商家要利润)</div>
+          <div class="node">决策权的分歧(定价权归谁)</div>
+          <div class="node">资源的稀缺性</div>
+          <div class="node">期望的差异</div>
+          <div class="node">沟通出现障碍</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sec">处理策略 & 六种方式（从软到硬）</h3>
+    <div class="flow">
+      <span class="s">沟通</span><span class="a">→</span><span class="s">劝说</span><span class="a">→</span>
+      <span class="s">谈判</span><span class="a">→</span><span class="s">仲裁</span><span class="a">→</span>
+      <span class="s">诉讼(最后)</span><span class="a">→</span><span class="s">清理/退出</span>
+    </div>
+    <div class="chips">
+      <span class="chip">缓解(共同目标)</span><span class="chip">互动式合作</span>
+      <span class="chip">渠道领袖调解</span><span class="chip">激发销售热情</span>
+      <span class="chip">调整结构(扁平化)</span><span class="chip">互利互惠</span>
+    </div>
+    <div class="note">线上线下平衡：同价同促销 / 区分型号 / 线上销量计入当地经销商返利。</div>
+
+    <h3 class="sec">窜货（7.4·恶性销售行为）</h3>
+    <div class="grid g2">
+      <div class="card"><div class="h">定义关键词</div><div class="b">分销机构<b>受短期利益驱使·违反销售协议·有意识跨区域低价</b>销售，造成市场混乱、损害厂家声誉</div></div>
+      <div class="card"><div class="h">危害链条</div><div class="b">窜货→低价→跟风竞价→卖穿价格→失去信心→萎缩退市</div></div>
+    </div>
+    <div class="chips">
+      <span class="chip">级差价格/到岸价</span><span class="chip">控促销力度</span><span class="chip">合理销量目标</span>
+      <span class="chip">公平政策</span><span class="chip">库存管理</span><span class="chip">明确权责区域</span>
+      <span class="chip">返利综合考量</span><span class="chip">区域标码</span><span class="chip">处罚制度(金龙鱼)</span><span class="chip">业务员考核</span>
+    </div>
+
+    <div class="co key"><b>冲突案例6步模板：</b>现状(画图)→变化/问题→冲突类型→根源(挂理论)→解决+结构调整(8.5四策略)→注意事项(别把中间商推给对手)。</div>
+
+    <div class="foot"><span>第7章 冲突与窜货</span><span>第 8 页 / 共 10 页</span></div>
+  </div>
+</section>
+<!-- ========== PAGE 9 第8章 维护与创新 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--c8)">8章 · 09</div>
+    <h2 class="ph" style="border-color:var(--c8)">第8章 渠道维护与创新</h2>
+
+    <h3 class="sec">8.5 渠道调整（点名·三层）</h3>
+    <div class="tree">
+      <span class="root" style="background:var(--c8)">渠道调整方式</span>
+      <div class="branch">
+        <div class="node"><b>理由</b><span class="d"> 现有渠道未达要求·客观条件变化·发展战略变化</span></div>
+        <div class="node"><b>方向(4)</b><span class="d"> 关注顾客满意度·开发新兴渠道·填补市场空白·重组渠道</span></div>
+        <div class="node"><b>改进策略=调整方式(4，核心答案)</b><span class="badge hot">点名</span></div>
+        <div class="lv2">
+          <div class="node">①调整渠道政策(战略层+战术层)</div>
+          <div class="node">②增减渠道成员(做调整分析)</div>
+          <div class="node">③改进整个渠道系统(先做可行性分析)</div>
+          <div class="node">④增减某些市场渠道(权衡四负面效应)</div>
+        </div>
+      </div>
+    </div>
+    <div class="note">案例：戴尔中国 从单一直销→"直销+分销"复合渠道；苏宁第三次转型线上线下融合。</div>
+
+    <h3 class="sec">8.6 渠道创新 + 网络分销类型（点名）</h3>
+    <div class="grid g2">
+      <div class="card"><div class="h">渠道创新两部分</div><div class="b"><b>优化整合</b>(重心下移/扁平化/深度分销/区域精耕/直播/新零售/全渠道) + <b>模式创新</b></div></div>
+      <div class="card"><div class="h">电子营销渠道</div><div class="b">罗森布洛姆定义；两趋势=移动的+社交网络的；10优势 4劣势</div></div>
+      <div class="card"><div class="h">网络分销类型(点名)</div>
+        <div class="b"><b>B2B</b>(批量大/频率低/客户少稳) vs <b>B2C</b>(批量小/频率高/客户多散)<br>
+        B2C两方式：制造商网店直销 / 电商平台代理(淘宝京东苏宁唯品会)<br>+ O2O、移动互联网、社交电商、直播</div></div>
+      <div class="card"><div class="h">新零售(阿里)</div><div class="b">以消费者体验为中心、数据驱动的泛零售业态；本质=重构人货场；驱动=消费升级+科技+效率</div></div>
+    </div>
+
+    <h3 class="sec">专题八 全渠道零售（点名名词"全渠道"）</h3>
+    <div class="co key"><b>定义：</b>企业为满足消费者<b>任何时间、任何地点、任何方式</b>的购物娱乐社交体验需求，采用尽可能多的零售渠道类型进行组合和整合销售的行为。又称无缝零售="鼠标+水泥+移动终端"。</div>
+    <div class="chips">
+      <span class="chip">拓宽连接</span><span class="chip">大数据决策</span>
+      <span class="chip">社交网络精准传播</span><span class="chip">线上线下无缝对接</span>
+    </div>
+
+    <div class="co tip"><b>数字时代创新趋势(点名·综合答)：</b>电子化·移动化·社交化·媒体渠道融合(四化)·扁平化重心下移·新零售·全渠道。记五个关键词即可。</div>
+
+    <div class="foot"><span>第8章 维护与创新</span><span>第 9 页 / 共 10 页</span></div>
+  </div>
+</section>
+<!-- ========== PAGE 10 判断陷阱 + 计算卡 + 复习表 ========== -->
+<section class="sheet">
+  <div class="margin"><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
+  <div class="content">
+    <div class="tag" style="background:var(--ink)">冲刺 · 10</div>
+    <h2 class="ph">冲刺页 · 判断陷阱 + 计算卡 + 复习表</h2>
+
+    <h3 class="sec">高频判断陷阱（左错右对）</h3>
+    <table>
+      <tr><th>错误说法 ✘</th><th>正确 ✔</th></tr>
+      <tr><td>数层级把厂家和消费者也算一层</td><td>只数中间商，厂→零售→顾客=一阶</td></tr>
+      <tr><td>选择分销适合便利品</td><td>适合选购品和特殊品</td></tr>
+      <tr><td>单位价值越高渠道越长</td><td>单位价值越<b>低</b>渠道越长</td></tr>
+      <tr><td>代理商拥有所有权赚差价</td><td>那是经销商；代理商赚佣金</td></tr>
+      <tr><td>强制评分法按原始总分选</td><td>按<b>加权总分</b>选</td></tr>
+      <tr><td>特征分析百分比越低越好</td><td>越<b>高</b>越好(CA1最好)</td></tr>
+      <tr><td>精神激励是激励的基础</td><td><b>物质</b>激励是基础</td></tr>
+      <tr><td>暗返利可以连续使用</td><td>只能与明返<b>交叉</b>使用</td></tr>
+      <tr><td>梯级返利分段累进计算</td><td>就上限<b>全额</b>按档位算</td></tr>
+      <tr><td>助销主要是服务型模式</td><td>是服务型，<b>更是控制型</b></td></tr>
+      <tr><td>水平冲突典型是应收账款</td><td>水平=窜货；垂直=应收账款</td></tr>
+      <tr><td>法律诉讼是解决冲突首选</td><td>诉讼是<b>最后</b>选择</td></tr>
+      <tr><td>直销是渠道最长的模式</td><td>直销=零层次，<b>最短</b></td></tr>
+      <tr><td>B2B批量小频率高客户多</td><td>那是B2C；B2B批量大客户少稳</td></tr>
+    </table>
+
+    <h3 class="sec">五个公式速记卡</h3>
+    <div class="grid g2">
+      <div class="card"><div class="h">加权总分</div><div class="b">Σ(打分×系数)，系数和=1，比加权分</div></div>
+      <div class="card"><div class="h">销售量n期总量</div><div class="b">na + b·n(n+1)/2，t从1起</div></div>
+      <div class="card"><div class="h">特征分析%</div><div class="b"><b>实得÷满分</b>=Σ(分×权)÷Σ(权×10)，缺项打0但满分仍计</div></div>
+      <div class="card"><div class="h">信用额度</div><div class="b">预期销售额×信用比例，再按实际销售分批放</div></div>
+    </div>
+    <div class="co warn"><b>分子分母口诀：</b>特征分析"实得在上，满分在下"，结果超过100%必定算错。</div>
+
+    <h3 class="sec">两周复习节奏（考试：第12周周五下午）</h3>
+    <table>
+      <tr><th>阶段</th><th>重点</th></tr>
+      <tr><td>第1~3天</td><td>通读1~3章 + 练模拟分析题画图(第3页)</td></tr>
+      <tr><td>第4~6天</td><td>通读4~5章 + 练5个计算公式 + 激励案例</td></tr>
+      <tr><td>第7~9天</td><td>通读6~8章 + 背控制力/调整/网络分销/全渠道</td></tr>
+      <tr><td>第10~11天</td><td>冲突调整案例 + 名词简答闭卷默写 + 判断陷阱</td></tr>
+      <tr><td>第12天</td><td>只看标红+公式+两套答题模板，再画一次图</td></tr>
+    </table>
+
+    <div class="co tip"><b>配套文档：</b>需要完整文字详解和逐条背诵版，看《渠道营销考点精讲与满分复习手册》。本图解负责"看structure、记分布"，手册负责"背原句"。</div>
+
+    <div class="foot"><span>冲刺页</span><span>第 10 页 / 共 10 页 · 完</span></div>
+  </div>
+</section>
+</div>
+</body>
+</html>
